@@ -25,7 +25,8 @@ G3WADMIN_LOCAL_MORE_APPS = [
     #'openrouteservice',
     'qtimeseries',
     'frontend',
-    'qps_timeseries'
+    'qps_timeseries',
+    'dam_monitor'
 ]
 
 DATABASES = {

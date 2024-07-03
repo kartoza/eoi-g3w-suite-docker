@@ -1,7 +1,7 @@
 ##
 # DOCKER IMAGE: https://hub.docker.com/r/g3wsuite/g3w-suite-dev
 #
-# This image extends G3W-SUITE LTR (UBUNTU + QGIS LTR) for development purposes 
+# This image extends G3W-SUITE LTR (UBUNTU + QGIS LTR) for development purposes
 ##
 
 FROM g3wsuite/g3w-suite-deps-ltr:dev
@@ -26,14 +26,17 @@ RUN apt update &&  \
 ARG G3W_SUITE_BRANCH
 
 # Override settings
-ADD requirements_rl.txt /requirements_rl.txt
+ADD deployment/docker/requirements_rl.txt /requirements_rl.txt
 
-ADD scripts /scripts
+ADD deployment/scripts /scripts
 
 RUN chmod +x /scripts/*.sh
 
 RUN /scripts/setup.sh \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ADD deployment/docker/g3w-suite/overrides /code
+RUN cp /code/settings_docker.py /code/g3w-admin/base/settings/local_settings.py
 
 CMD echo "Base image for g3w-suite-dev" && tail -f /dev/null
 
