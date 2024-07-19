@@ -38,8 +38,19 @@ DATABASES = {
         'PASSWORD': os.getenv('G3WSUITE_POSTGRES_PASS'),
         'HOST': os.getenv('G3WSUITE_POSTGRES_HOST'),
         'PORT': os.getenv('G3WSUITE_POSTGRES_PORT'),
+    },
+    'tailings': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': os.getenv('TAILINGS_POSTGRES_DBNAME'),
+        'USER': os.getenv('TAILINGS_POSTGRES_USER_LOCAL') if os.getenv('TAILINGS_POSTGRES_USER_LOCAL') else "%s@%s" % (
+            os.getenv('TAILINGS_POSTGRES_USER'), os.getenv('TAILINGS_POSTGRES_HOST')),
+        'PASSWORD': os.getenv('TAILINGS_POSTGRES_PASS'),
+        'HOST': os.getenv('TAILINGS_POSTGRES_HOST'),
+        'PORT': os.getenv('TAILINGS_POSTGRES_PORT'),
     }
 }
+
+DATABASE_ROUTERS = ['dam_monitor.router.TailingsRouter']
 
 MEDIA_ROOT = '/shared-volume/media/'
 MEDIA_URL = '/media/'
