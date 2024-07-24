@@ -19,6 +19,7 @@ git submodule add -f https://github.com/g3w-suite/g3w-admin-frontend.git  g3w-ad
 
 # Dam monitor
 git submodule add -f https://github.com/zamuzakki/dam-monitor.git  g3w-admin/dam_monitor
+git submodule add -f https://github.com/zamuzakki/g3w-api.git  g3w-admin/g3w_api
 
 
 # Caching
