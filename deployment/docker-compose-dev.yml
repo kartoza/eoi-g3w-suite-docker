@@ -80,6 +80,8 @@ services:
       - ./scripts:/code/ci_scripts
       - ${G3WSUITE_LOCAL_CODE_PATH}:/code
       - ${DAM_MONITOR_CODE_PATH}:/code/g3w-admin/dam_monitor
+      - ${G3W_API_CODE_PATH}:/code/g3w-admin/g3w_api
+      - ./secrets/pg_service.conf:${PGSERVICEFILE}
       - ./qgis/QGIS3.ini:/shared-volume/QGIS/QGIS3.ini
 
     entrypoint: /scripts/docker-entrypoint-dev.sh
