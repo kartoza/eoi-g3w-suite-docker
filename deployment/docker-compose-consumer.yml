@@ -78,9 +78,6 @@ services:
       - ./docker/g3w-suite/settings_docker.py:/code/g3w-admin/base/settings/local_settings.py
       - ./secrets/pg_service.conf:${PGSERVICEFILE}
       - ./qgis/QGIS3.ini:/shared-volume/QGIS/QGIS3.ini
-      - ${DAM_MONITOR_CODE_PATH}:/code/g3w-admin/dam_monitor
-      - ${G3W_API_CODE_PATH}:/code/g3w-admin/g3w_api
-
     networks:
       internal:
 
@@ -141,8 +138,6 @@ services:
       - ./docker/g3w-suite/settings_docker.py:/code/g3w-admin/base/settings/local_settings.py
       - ./secrets/pg_service.conf:${PGSERVICEFILE}
       - ./qgis/QGIS3.ini:/shared-volume/QGIS/QGIS3.ini
-      - ${DAM_MONITOR_CODE_PATH}:/code/g3w-admin/dam_monitor
-      - ${G3W_API_CODE_PATH}:/code/g3w-admin/g3w_api
     networks:
       internal:
 
