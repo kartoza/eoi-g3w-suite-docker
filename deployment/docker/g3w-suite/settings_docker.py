@@ -27,7 +27,7 @@ G3WADMIN_LOCAL_MORE_APPS = [
     'frontend',
     'qps_timeseries',
     'dam_monitor',
-    'g3w_api',
+    'g3w_api'
 ]
 
 DATABASES = {
