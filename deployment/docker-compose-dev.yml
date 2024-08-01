@@ -60,6 +60,7 @@ services:
       - QGIS_OPTIONS_PATH=/shared-volume/
       - QGIS_SERVER_LOG_FILE
       - QGIS_SERVER_LOG_LEVEL
+      - G3WSUITE_CONSUMER=1
     expose:
       - "8000"
     ports:
@@ -97,9 +98,65 @@ services:
       internal:
     restart: always
 
+#  # Asynchronous tasks consumer (run_huey)
+#  g3w-suite-consumer:
+#    build:
+#      context: ../
+#      dockerfile: deployment/docker/Dockerfile
+#    environment:
+#      - DISPLAY=:99
+#      - G3WSUITE_TILECACHE_PATH
+#      - G3WSUITE_QDJANGO_SERVER_URL
+#      - G3WSUITE_POSTGRES_DBNAME
+#      - G3WSUITE_POSTGRES_USER
+#      - G3WSUITE_POSTGRES_USER_LOCAL
+#      - G3WSUITE_POSTGRES_PASS
+#      - G3WSUITE_POSTGRES_HOST
+#      - G3WSUITE_POSTGRES_PORT
+#      - TAILINGS_POSTGRES_DBNAME
+#      - TAILINGS_POSTGRES_USER
+#      - TAILINGS_POSTGRES_USER_LOCAL
+#      - TAILINGS_POSTGRES_PASS
+#      - TAILINGS_POSTGRES_HOST
+#      - TAILINGS_POSTGRES_PORT
+#      - G3WSUITE_ORS_API_ENDPOINT
+#      - G3WSUITE_ORS_API_KEY
+#      - G3WSUITE_DEBUG
+#      - TILESTACHE_CACHE_BUFFER_SIZE
+#      - TILESTACHE_CACHE_TOKEN
+#      - G3WSUITE_GUNICORN_NUM_WORKERS
+#      - G3WSUITE_GUNICORN_MAX_REQUESTS
+#      - G3WSUITE_GUNICORN_TIMEOUT
+#      - FRONTEND
+#      - PGSERVICEFILE
+#      - QGIS_OPTIONS_PATH=/shared-volume/
+#      - QGIS_SERVER_LOG_FILE
+#      - QGIS_SERVER_LOG_LEVEL
+#    restart: "no"
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: "200k"
+#        max-file: "10"
+#    entrypoint: /scripts/docker-consumer-entrypoint.sh
+#    depends_on:
+#      - g3w-suite
+#      - redis
+#    volumes:
+#      - ${WEBGIS_DOCKER_SHARED_VOLUME}:/shared-volume
+#      - ${WEBGIS_DOCKER_SHARED_VOLUME}/node_modules:/code/node_modules
+#      - ./docker/g3w-suite/overrides/static:/code/static:ro
+#      - ./docker/g3w-suite/overrides/templates:/code/templates:ro
+#      - ./docker/g3w-suite/settings_docker.py:/code/g3w-admin/base/settings/local_settings.py
+#      - ./secrets/pg_service.conf:${PGSERVICEFILE}
+#      - ./qgis/QGIS3.ini:/shared-volume/QGIS/QGIS3.ini
+#    networks:
+#      internal:
+
 volumes:
   shared-volume:
   g3wsuite-pg-data:
+  g3wsuite-cnpg-data:
 
 networks:
   internal:
