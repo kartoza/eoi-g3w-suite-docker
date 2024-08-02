@@ -18,7 +18,7 @@ services:
         max-size: "200k"
         max-file: "10"
     volumes:
-      - ${WEBGIS_DOCKER_SHARED_VOLUME}:/var/lib/postgresql
+      - ${PG_VOLUME}:/var/lib/postgresql
     healthcheck:
       interval: 60s
       timeout: 30s
@@ -159,9 +159,9 @@ services:
       internal:
 
 volumes:
-  shared-volume:
+  g3w-suite-data:
   g3wsuite-pg-data:
-  g3wsuite-cnpg-data:
+  g3wsuite-eoi-db-data:
 
 networks:
   internal:
