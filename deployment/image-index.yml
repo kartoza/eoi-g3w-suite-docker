@@ -1,0 +1,4 @@
+images:
+  - name: g3w-suite
+    dockerfile: deployment/docker/Dockerfile
+    buildPath: .
