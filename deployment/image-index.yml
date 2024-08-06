@@ -1,4 +1,4 @@
 images:
-  - name: g3w-suite
+  - name: eoi-g3w-suite
     dockerfile: deployment/docker/Dockerfile
     buildPath: .
