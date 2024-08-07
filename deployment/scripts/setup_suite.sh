@@ -60,6 +60,7 @@ if [ ! -e ${SETUP_DONE_FILE} ]; then
       rm -rf ${STATIC_ROOT}
       python3 manage.py collectstatic --noinput -v 0
     fi
+    echo "Migrating default DB"
     python3 manage.py migrate --noinput
 
     echo "Installing fixtures ..."
@@ -75,8 +76,8 @@ if [ ! -e ${SETUP_DONE_FILE} ]; then
     # For django-file-form: create <media_directory>/temp_uploads if not exists
     ls ${MEDIA_ROOT}/temp_uploads || mkdir ${MEDIA_ROOT}/temp_uploads
 
-
-    python3 manage.py migrate --database=${TAILINGS_POSTGRES_DBNAME} --noinput
+    echo "Migrating tailings DB"
+    python3 manage.py migrate --database=tailings --noinput
 
 
     touch ${SETUP_DONE_FILE}
@@ -102,9 +103,11 @@ else
     if [[ -z ${G3WSUITE_DEBUG} || ${G3WSUITE_DEBUG} != "True" ]]; then
       python3 manage.py collectstatic --noinput -v 0
     fi
+    echo "Migrating default DB"
     python3 manage.py migrate --noinput
     python3 manage.py sitetree_resync_apps
-    python3 manage.py migrate --database=${TAILINGS_POSTGRES_DBNAME} --noinput
+    echo "Migrating tailings DB"
+    python3 manage.py migrate --database=tailings --noinput
 fi
 
 # Make sure data are readable:
