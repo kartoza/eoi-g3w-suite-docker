@@ -35,8 +35,9 @@ RUN chmod +x /scripts/*.sh
 RUN /scripts/setup.sh \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ADD deployment/docker/g3w-suite/overrides /code
-RUN cp /code/settings_docker.py /code/g3w-admin/base/settings/local_settings.py
+ADD deployment/docker/g3w-suite /overrides
+RUN mv /overrides/settings_docker.py /code/g3w-admin/base/settings/local_settings.py && \
+    mv /overrides/overrides/templates /code/ && mv /overrides/overrides/static /code/
 
 CMD echo "Base image for g3w-suite-dev" && tail -f /dev/null
 

@@ -30,6 +30,7 @@ fi
 wait-for-it -h ${G3WSUITE_REDIS_HOST:-redis} -p ${G3WSUITE_REDIS_PORT:-6379} -t 30
 
 # Build the suite
+cp /scripts/build_suite.sh /code/ci_scripts/build_suite.sh
 /code/ci_scripts/build_suite.sh
 # Setup once
 cp /scripts/setup_suite.sh /code/ci_scripts/setup_suite.sh
