@@ -13,8 +13,10 @@ export QGIS_SERVER_PARALLEL_RENDERING=1
 cd /code/g3w-admin
 
 # Build the suite
+cp /scripts/build_suite.sh /code/ci_scripts/build_suite.sh
 /code/ci_scripts/build_suite.sh
 # Setup once
+cp /scripts/setup_suite.sh /code/ci_scripts/setup_suite.sh
 /code/ci_scripts/setup_suite.sh
 
 # To get git properties loose on code overrides.
