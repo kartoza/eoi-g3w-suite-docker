@@ -223,5 +223,52 @@ LOGGING = {
 
 SESSION_COOKIE_NAME = 'gis3w-suite-dev-iehtgdb264t5gr'
 
+# -------------------------------------------------- #
+# ----------            SENTRY          ------------ #
+# -------------------------------------------------- #
+SENTRY_DSN = os.environ.get('SENTRY_DSN', '')
+if SENTRY_DSN is not None and SENTRY_DSN.strip():
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+    from rest_framework.exceptions import (
+        NotAuthenticated,
+        PermissionDenied as RestPermissionDenied,
+        AuthenticationFailed
+    )
+    from django.core.exceptions import (
+        PermissionDenied
+    )
+
+    def before_send(event, hint):
+        if 'exc_info' in hint:
+            errors_to_ignore = (
+                NotAuthenticated,
+                RestPermissionDenied,
+                PermissionDenied,
+                AuthenticationFailed,
+            )
+            exc_value = hint['exc_info'][1]
+
+            if isinstance(exc_value, errors_to_ignore):
+                return None
+        return event
+
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        integrations=[
+            DjangoIntegration(),
+        ],
+
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        # We recommend adjusting this value in production.
+        traces_sample_rate=1.0,
+
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True,
+        before_send=before_send
+    )
+
 FRONTEND = True
 FRONTEND_APP = 'frontend'

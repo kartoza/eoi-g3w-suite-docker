@@ -2,3 +2,6 @@
 -r requirements_docker.txt
 
 gunicorn
+
+# Python client for Sentry (https://sentry.io)
+sentry-sdk==1.18.0
