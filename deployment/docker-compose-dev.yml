@@ -61,6 +61,7 @@ services:
       - QGIS_SERVER_LOG_FILE
       - QGIS_SERVER_LOG_LEVEL
       - G3WSUITE_CONSUMER=1
+      - SENTRY_DSN
     expose:
       - "8000"
     ports:
@@ -79,6 +80,7 @@ services:
       - ./docker/g3w-suite/overrides/templates:/code/templates:ro
       - ./docker/g3w-suite/settings_docker.py:/code/g3w-admin/base/settings/local_settings.py
       - ./scripts:/code/ci_scripts
+      - ./scripts:/ci_scripts
       - ./secrets/pg_service.conf:${PGSERVICEFILE}
       - ./qgis/QGIS3.ini:/shared-volume/QGIS/QGIS3.ini
 #      Uncomment these lines if you want to mount G3W Admin, dam_monitor, or g3w api when developing
@@ -133,6 +135,7 @@ services:
       - QGIS_OPTIONS_PATH=/shared-volume/
       - QGIS_SERVER_LOG_FILE
       - QGIS_SERVER_LOG_LEVEL
+      - SENTRY_DSN
     restart: "no"
     logging:
       driver: "json-file"
