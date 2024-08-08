@@ -23,5 +23,4 @@ cp /scripts/setup_suite.sh /code/ci_scripts/setup_suite.sh
 git config --global --add safe.directory /code
 
 # Start Django server
-#python3 manage.py runserver 0.0.0.0:8000
-sleep 10800
+python3 manage.py runserver 0.0.0.0:8000
