@@ -34,6 +34,5 @@ pip3 install -r /code/g3w-admin/qplotly/requirements.txt
 # Openrouteservice
 pip3 install -r /code/g3w-admin/openrouteservice/requirements.txt
 
-echo "Install QGIS Timeseries"
 export DEB_PYTHON_INSTALL_LAYOUT=deb_system
 pip3 install git+https://github.com/kartoza/g3w-admin-ps-timeseries.git@fix-qvariant
