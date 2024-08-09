@@ -75,7 +75,6 @@ services:
       - ${WEBGIS_DOCKER_SHARED_VOLUME}/node_modules:/code/node_modules
       - ./docker/g3w-suite/overrides/static:/code/static:ro
       - ./docker/g3w-suite/overrides/templates:/code/templates:ro
-      - ./docker/g3w-suite/settings_docker.py:/code/g3w-admin/base/settings/local_settings.py
       - ./secrets/pg_service.conf:${PGSERVICEFILE}
       - ./qgis/QGIS3.ini:/shared-volume/QGIS/QGIS3.ini
     networks:
@@ -136,7 +135,6 @@ services:
       - ${CONSUMER_VOLUME}/node_modules:/code/node_modules
       - ./docker/g3w-suite/overrides/static:/code/static:ro
       - ./docker/g3w-suite/overrides/templates:/code/templates:ro
-      - ./docker/g3w-suite/settings_docker.py:/code/g3w-admin/base/settings/local_settings.py
       - ./secrets/pg_service.conf:${PGSERVICEFILE}
       - ./qgis/QGIS3.ini:/shared-volume/QGIS/QGIS3.ini
     networks:
