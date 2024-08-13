@@ -1,6 +1,3 @@
-
-
-
 if [ -z "$(ls -A /code)" ]; then
    echo "Cloning g3w-admin ..."
    git clone https://github.com/kartoza/g3w-admin.git --branch custom-request-schema --depth 1 /code && \
