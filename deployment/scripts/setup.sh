@@ -15,6 +15,7 @@ pip3 install -r requirements_huey.txt
 git submodule add -f https://github.com/g3w-suite/g3w-admin-frontend.git  g3w-admin/frontend
 
 # Dam monitor
+echo "Adding dam_monitor and g3w_api"
 git submodule add -f https://github.com/kartoza/eoi-g3w-dam-monitor.git  g3w-admin/dam_monitor
 git submodule add -f https://github.com/kartoza/eoi-g3w-api.git  g3w-admin/g3w_api
 
